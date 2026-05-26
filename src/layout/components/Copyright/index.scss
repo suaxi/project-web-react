@@ -1,0 +1,22 @@
+.copyright {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 999;
+  height: var(--footer-height);
+  padding: 10px 20px;
+  color: #666;
+  font-size: 14px;
+  text-align: right;
+  background: #f8f8f8;
+  border-top: 1px solid #e7e7e7;
+}
+
+html.dark {
+  .copyright {
+    color: var(--layout-text);
+    background: #1d1e1f;
+    border-top-color: #303030;
+  }
+}

@@ -1,0 +1,74 @@
+.navbar-inner {
+  display: flex;
+  align-items: center;
+  min-width: 0;
+  height: 100%;
+}
+
+.navbar-icon-button {
+  flex: 0 0 auto;
+  width: 42px;
+  height: var(--navbar-height);
+  border-radius: 0;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.025) !important;
+  }
+}
+
+.hamburger-container {
+  margin-left: -16px;
+}
+
+.breadcrumb-container {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding-left: 8px;
+}
+
+.top-nav-placeholder {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.right-menu {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  height: 100%;
+  margin-left: auto;
+}
+
+.navbar-text-button {
+  height: var(--navbar-height);
+  border-radius: 0;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.025) !important;
+  }
+}
+
+.avatar-wrapper {
+  display: flex;
+  align-items: center;
+  height: var(--navbar-height);
+  padding: 0 8px;
+  color: var(--navbar-text);
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.025);
+  }
+}
+
+.user-nickname {
+  max-width: 120px;
+  margin-left: 8px;
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

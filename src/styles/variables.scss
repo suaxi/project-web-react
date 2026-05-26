@@ -1,0 +1,54 @@
+$base-sidebar-width: 200px;
+$collapsed-sidebar-width: 54px;
+$navbar-height: 50px;
+$tags-view-height: 34px;
+$footer-height: 36px;
+$layout-transition-duration: 0.28s;
+$layout-mobile-breakpoint: 992px;
+
+:root {
+  --base-sidebar-width: #{$base-sidebar-width};
+  --collapsed-sidebar-width: #{$collapsed-sidebar-width};
+  --navbar-height: #{$navbar-height};
+  --tags-view-height: #{$tags-view-height};
+  --footer-height: #{$footer-height};
+  --layout-transition-duration: #{$layout-transition-duration};
+  --layout-mobile-breakpoint: #{$layout-mobile-breakpoint};
+
+  --current-color: #409eff;
+  --layout-bg: #f5f7fa;
+  --layout-text: #303133;
+  --sidebar-bg: #304156;
+  --sidebar-text: #bfcbd9;
+  --menu-hover: #263445;
+  --menu-active-text: #409eff;
+  --navbar-bg: #ffffff;
+  --navbar-text: #303133;
+  --tags-bg: #ffffff;
+  --tags-item-bg: #ffffff;
+  --tags-item-border: #d8dce5;
+  --tags-item-text: #495060;
+  --tags-item-hover: #eeeeee;
+  --tags-close-hover: #b4bccc;
+  --scrollbar-track: #f1f1f1;
+  --scrollbar-thumb: #c0c0c0;
+}
+
+html.dark {
+  --layout-bg: #141414;
+  --layout-text: #d0d0d0;
+  --sidebar-bg: #141414;
+  --sidebar-text: #ffffff;
+  --menu-hover: #2d2d2d;
+  --menu-active-text: #409eff;
+  --navbar-bg: #141414;
+  --navbar-text: #ffffff;
+  --tags-bg: #141414;
+  --tags-item-bg: #1d1e1f;
+  --tags-item-border: #303030;
+  --tags-item-text: #d0d0d0;
+  --tags-item-hover: #2d2d2d;
+  --tags-close-hover: #64666a;
+  --scrollbar-track: #1d1e1f;
+  --scrollbar-thumb: #64666a;
+}

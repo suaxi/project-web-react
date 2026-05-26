@@ -1,0 +1,140 @@
+.app-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  &.mobile.openSidebar {
+    position: fixed;
+    top: 0;
+  }
+}
+
+.layout-shell {
+  min-height: 100%;
+  background: var(--layout-bg);
+}
+
+.sidebar-container {
+  position: fixed !important;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1001;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--sidebar-bg) !important;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  transition: width var(--layout-transition-duration);
+}
+
+.main-container {
+  position: relative;
+  min-height: 100vh;
+  margin-left: var(--base-sidebar-width);
+  background: var(--layout-bg);
+  transition: margin-left var(--layout-transition-duration);
+}
+
+.hideSidebar {
+  .main-container {
+    margin-left: var(--collapsed-sidebar-width);
+  }
+}
+
+.sidebarHide {
+  .main-container {
+    margin-left: 0;
+  }
+}
+
+.withoutAnimation {
+  .main-container,
+  .sidebar-container {
+    transition: none;
+  }
+}
+
+.drawer-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: 0.3;
+}
+
+.navbar {
+  height: var(--navbar-height);
+  padding: 0 16px;
+  line-height: var(--navbar-height);
+  color: var(--navbar-text);
+  background: var(--navbar-bg);
+  box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
+}
+
+.fixedHeaderLayout {
+  .main-container {
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .fixed-header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 9;
+    width: calc(100% - var(--base-sidebar-width));
+    transition: width var(--layout-transition-duration);
+  }
+
+  .app-main {
+    height: calc(100vh - var(--navbar-height));
+    min-height: 0;
+    margin-top: var(--navbar-height);
+    overflow-y: auto;
+    scrollbar-gutter: auto;
+  }
+
+  &.hasTagsView {
+    .app-main {
+      height: calc(100vh - var(--navbar-height) - var(--tags-view-height));
+      margin-top: calc(var(--navbar-height) + var(--tags-view-height));
+    }
+  }
+
+  &.hideSidebar {
+    .fixed-header {
+      width: calc(100% - var(--collapsed-sidebar-width));
+    }
+  }
+
+  &.sidebarHide {
+    .fixed-header {
+      width: 100%;
+    }
+  }
+}
+
+.mobile {
+  .main-container {
+    margin-left: 0;
+  }
+
+  .sidebar-container {
+    width: var(--base-sidebar-width) !important;
+    transition: transform var(--layout-transition-duration);
+  }
+
+  &.hideSidebar {
+    .sidebar-container {
+      pointer-events: none;
+      transform: translate3d(calc(-1 * var(--base-sidebar-width)), 0, 0);
+    }
+  }
+
+  .fixed-header {
+    width: 100%;
+  }
+}

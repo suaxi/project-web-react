@@ -1,0 +1,85 @@
+.sidebar-shell {
+  min-height: 100%;
+  background: var(--sidebar-bg);
+
+  &.theme-light {
+    --sidebar-bg: #fff;
+    --sidebar-text: #303133;
+    --menu-hover: #f0f1f5;
+  }
+}
+
+.sidebar-logo-container {
+  height: var(--navbar-height);
+  overflow: hidden;
+  background: var(--sidebar-bg);
+}
+
+.sidebar-logo-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  padding: 0 12px;
+  color: var(--sidebar-text);
+  white-space: nowrap;
+}
+
+.sidebar-logo-mark {
+  flex: 0 0 auto;
+  width: 28px;
+  height: 28px;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 28px;
+  text-align: center;
+  background: var(--current-color);
+  border-radius: 6px;
+}
+
+.sidebar-title {
+  margin-left: 10px;
+  overflow: hidden;
+  font-size: 14px;
+  font-weight: 600;
+  text-overflow: ellipsis;
+}
+
+.sidebar-menu {
+  height: calc(100vh - var(--navbar-height));
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-inline-end: 0 !important;
+
+  &.ant-menu-light {
+    background: #fff;
+  }
+
+  .ant-menu-title-content {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .ant-menu-item-selected {
+    color: #fff;
+    background-color: var(--current-color) !important;
+
+    a {
+      color: #fff;
+    }
+  }
+}
+
+.sidebar-container.ant-layout-sider-collapsed {
+  .sidebar-logo-link {
+    padding: 0;
+  }
+
+  .sidebar-logo-mark {
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+  }
+}
