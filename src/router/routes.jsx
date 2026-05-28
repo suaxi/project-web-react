@@ -32,6 +32,16 @@ export const layoutRoutes = [
 
 export const constantRoutes = [
   {
+    path: '/login',
+    element: lazyElement(() => import('@/views/login/index.jsx')),
+    hidden: true,
+    meta: {
+      title: '登录',
+      hidden: true,
+      noCache: true
+    }
+  },
+  {
     path: '/',
     element: (
       <Suspense fallback={null}>

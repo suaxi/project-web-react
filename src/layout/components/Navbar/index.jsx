@@ -16,6 +16,7 @@ import useAppStore from '@/store/app.js'
 import usePermissionStore from '@/store/permission.js'
 import useSettingsStore from '@/store/settings.js'
 import useUserStore from '@/store/user.js'
+import DefaultAvatar from '@/assets/images/profile.jpg'
 import './index.scss'
 
 function Navbar({ onSetLayout }) {
@@ -122,8 +123,11 @@ function Navbar({ onSetLayout }) {
         okText: '确定',
         cancelText: '取消',
         onOk: async () => {
-          await logOut()
-          navigate('/index', { replace: true })
+          try {
+            await logOut()
+          } finally {
+            navigate('/login', { replace: true })
+          }
         }
       })
     }
@@ -209,7 +213,7 @@ function Navbar({ onSetLayout }) {
 
         <Dropdown menu={{ items: userMenuItems, onClick: handleUserMenuClick }} placement="bottomRight" trigger={['hover']}>
           <button className="avatar-wrapper" type="button">
-            <Avatar icon={!avatar ? <UserOutlined /> : null} size={30} src={avatar || undefined} />
+            <Avatar size={30} src={avatar || DefaultAvatar} />
             <span className="user-nickname">{nickName}</span>
           </button>
         </Dropdown>

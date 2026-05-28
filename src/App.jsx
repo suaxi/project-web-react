@@ -4,6 +4,28 @@ import AppRouter from '@/router/index.jsx'
 import useAppStore from '@/store/app.js'
 import useSettingsStore from '@/store/settings.js'
 
+function RequestErrorMessage() {
+  const { message } = AntdApp.useApp()
+
+  useEffect(() => {
+    const handleRequestError = (event) => {
+      const errorMessage = event.detail?.message
+
+      if (errorMessage) {
+        message.error(errorMessage)
+      }
+    }
+
+    window.addEventListener('request-error', handleRequestError)
+
+    return () => {
+      window.removeEventListener('request-error', handleRequestError)
+    }
+  }, [message])
+
+  return null
+}
+
 function App() {
   const size = useAppStore((state) => state.size)
   const themeColor = useSettingsStore((state) => state.theme)
@@ -26,6 +48,7 @@ function App() {
       }}
     >
       <AntdApp>
+        <RequestErrorMessage />
         <AppRouter />
       </AntdApp>
     </ConfigProvider>

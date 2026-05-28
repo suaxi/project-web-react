@@ -15,6 +15,14 @@ const useTagsViewStore = create((set, get) => ({
   cachedViews: [],
   iframeViews: [],
 
+  resetViews: () => {
+    set({
+      visitedViews: [],
+      cachedViews: [],
+      iframeViews: []
+    })
+  },
+
   addView: (view) => {
     get().addVisitedView(view)
     get().addCachedView(view)

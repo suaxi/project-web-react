@@ -4,6 +4,7 @@ export function login(username, password, code, uuid) {
   return request({
     url: 'auth/login',
     method: 'post',
+    showError: false,
     data: {
       username,
       password,
@@ -23,7 +24,8 @@ export function getUserInfo() {
 export function captcha() {
   return request({
     url: 'auth/captcha',
-    method: 'get'
+    method: 'get',
+    showError: false
   })
 }
 

@@ -1,11 +1,20 @@
 import {
   AppstoreOutlined,
+  ApartmentOutlined,
+  BookOutlined,
   DashboardOutlined,
   DesktopOutlined,
+  FileTextOutlined,
+  FolderOpenOutlined,
   LinkOutlined,
   MenuOutlined,
+  MonitorOutlined,
+  ProfileOutlined,
   SettingOutlined,
+  TableOutlined,
   ToolOutlined,
+  TeamOutlined,
+  UnorderedListOutlined,
   UserOutlined
 } from '@ant-design/icons'
 import { Menu } from 'antd'
@@ -18,13 +27,22 @@ import './index.scss'
 
 const iconMap = {
   dashboard: <DashboardOutlined />,
+  dict: <BookOutlined />,
   desktop: <DesktopOutlined />,
   link: <LinkOutlined />,
+  list: <UnorderedListOutlined />,
+  log: <FileTextOutlined />,
   menu: <MenuOutlined />,
+  monitor: <MonitorOutlined />,
+  peoples: <TeamOutlined />,
+  role: <TeamOutlined />,
   setting: <SettingOutlined />,
   system: <SettingOutlined />,
   tool: <ToolOutlined />,
+  tree: <ApartmentOutlined />,
+  'tree-table': <TableOutlined />,
   user: <UserOutlined />,
+  folder: <FolderOpenOutlined />,
   app: <AppstoreOutlined />
 }
 

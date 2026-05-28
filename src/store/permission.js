@@ -1,4 +1,5 @@
 import { createElement, lazy, Suspense } from 'react'
+import { Outlet } from 'react-router-dom'
 import { create } from 'zustand'
 import { getUserRouter } from '@/api/system/menu.js'
 import { constantRoutes, layoutRoutes } from '@/router/routes.jsx'
@@ -22,14 +23,18 @@ const loadView = (view) => {
 const convertBackendRoutes = (routes = []) =>
   routes.map((route) => {
     const nextRoute = { ...route }
+    const hasChildren = Boolean(nextRoute.children?.length)
+    const component = nextRoute.component
 
-    if (nextRoute.component && !['Layout', 'ParentView'].includes(nextRoute.component)) {
-      nextRoute.element = loadView(nextRoute.component)
+    if (hasChildren || ['Layout', 'ParentView'].includes(component)) {
+      nextRoute.element = createElement(Outlet)
+    } else if (component && component !== 'InnerLink') {
+      nextRoute.element = loadView(component)
     }
 
     delete nextRoute.component
 
-    if (nextRoute.children?.length) {
+    if (hasChildren) {
       nextRoute.children = convertBackendRoutes(nextRoute.children)
     } else {
       delete nextRoute.children
@@ -47,7 +52,7 @@ const mergeLayoutChildren = (dynamicRoutes = []) =>
 
     const children = route.children || []
     const fallbackRoutes = children.filter((child) => child.path === '404' || child.path === '*')
-    const baseRoutes = children.filter((child) => child.index || child.path === 'redirect/*')
+    const baseRoutes = children.filter((child) => !['404', '*'].includes(child.path))
 
     return {
       ...route,
@@ -84,13 +89,14 @@ const usePermissionStore = create((set) => ({
   generateRoutes: async () => {
     const res = await getUserRouter()
     const menuRoutes = convertBackendRoutes(JSON.parse(JSON.stringify(res || [])))
+    const sidebarRoutes = [...layoutRoutes, ...menuRoutes]
 
     set({
       addRoutes: menuRoutes,
       routes: mergeLayoutChildren(menuRoutes),
-      defaultRoutes: menuRoutes,
-      topbarRouters: menuRoutes,
-      sidebarRouters: menuRoutes
+      defaultRoutes: sidebarRoutes,
+      topbarRouters: sidebarRoutes,
+      sidebarRouters: sidebarRoutes
     })
 
     return menuRoutes
