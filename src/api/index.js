@@ -1,2 +1,6 @@
 export * from './login.js'
 export * from './system/menu.js'
+export * from './system/user.js'
+export * from './system/dept.js'
+export * from './system/role.js'
+export * from './system/job.js'
