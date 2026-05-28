@@ -148,14 +148,14 @@ function TagsView() {
     navigate(tag.fullPath || tag.path, { replace: true })
   }
 
-  const closeLeftSelectedTags = (tag) => {
+  const closeLeftTags = (tag) => {
     delLeftTags(tag)
     if (!useTagsViewStore.getState().visitedViews.some((item) => item.path === location.pathname)) {
       toLastView()
     }
   }
 
-  const closeRightSelectedTags = (tag) => {
+  const closeRightTags = (tag) => {
     delRightTags(tag)
     if (!useTagsViewStore.getState().visitedViews.some((item) => item.path === location.pathname)) {
       toLastView()
@@ -222,9 +222,9 @@ function TagsView() {
     } else if (key === 'others') {
       closeOthersTags(tag)
     } else if (key === 'left') {
-      closeLeftSelectedTags(tag)
+      closeLeftTags(tag)
     } else if (key === 'right') {
-      closeRightSelectedTags(tag)
+      closeRightTags(tag)
     } else if (key === 'all') {
       closeAllTags()
     }

@@ -12,14 +12,10 @@ function Settings({ open, onClose }) {
   const defaultRoutes = usePermissionStore((state) => state.defaultRoutes)
   const setSidebarRouters = usePermissionStore((state) => state.setSidebarRouters)
   const settings = useSettingsStore()
-  const { message, modal } = AntdApp.useApp()
-
-  const changeSetting = (key, value) => {
-    settings.changeSetting(key, value)
-  }
+  const { message } = AntdApp.useApp()
 
   const topNavChange = (checked) => {
-    changeSetting('topNav', checked)
+    settings.changeSetting('topNav', checked)
 
     if (!checked) {
       appStore.toggleSideBarHide(false)
@@ -33,20 +29,13 @@ function Settings({ open, onClose }) {
 
   const saveSetting = () => {
     settings.saveSetting()
-    message.success('布局配置已保存')
+    message.loading('正在保存到本地，请稍候...', 1)
   }
 
   const resetSetting = () => {
-    modal.confirm({
-      title: '重置配置',
-      content: '确定清除本地布局配置并刷新页面吗？',
-      okText: '确定',
-      cancelText: '取消',
-      onOk: () => {
-        settings.resetSetting()
-        setTimeout(() => window.location.reload(), 300)
-      }
-    })
+    message.loading('正在清除设置缓存并刷新，请稍候...', 1)
+    settings.resetSetting()
+    setTimeout(() => window.location.reload(), 1000)
   }
 
   return (
@@ -104,32 +93,32 @@ function Settings({ open, onClose }) {
 
       <div className="drawer-item">
         <span>开启 TagsView</span>
-        <Switch checked={settings.tagsView} onChange={(checked) => changeSetting('tagsView', checked)} />
+        <Switch checked={settings.tagsView} onChange={(checked) => settings.changeSetting('tagsView', checked)} />
       </div>
 
       <div className="drawer-item">
         <span>显示页签图标</span>
-        <Switch checked={settings.tagsIcon} disabled={!settings.tagsView} onChange={(checked) => changeSetting('tagsIcon', checked)} />
+        <Switch checked={settings.tagsIcon} disabled={!settings.tagsView} onChange={(checked) => settings.changeSetting('tagsIcon', checked)} />
       </div>
 
       <div className="drawer-item">
         <span>固定 Header</span>
-        <Switch checked={settings.fixedHeader} onChange={(checked) => changeSetting('fixedHeader', checked)} />
+        <Switch checked={settings.fixedHeader} onChange={(checked) => settings.changeSetting('fixedHeader', checked)} />
       </div>
 
       <div className="drawer-item">
         <span>显示 Logo</span>
-        <Switch checked={settings.sidebarLogo} onChange={(checked) => changeSetting('sidebarLogo', checked)} />
+        <Switch checked={settings.sidebarLogo} onChange={(checked) => settings.changeSetting('sidebarLogo', checked)} />
       </div>
 
       <div className="drawer-item">
         <span>动态标题</span>
-        <Switch checked={settings.dynamicTitle} onChange={(checked) => changeSetting('dynamicTitle', checked)} />
+        <Switch checked={settings.dynamicTitle} onChange={(checked) => settings.changeSetting('dynamicTitle', checked)} />
       </div>
 
       <div className="drawer-item">
         <span>底部版权</span>
-        <Switch checked={settings.footerVisible} onChange={(checked) => changeSetting('footerVisible', checked)} />
+        <Switch checked={settings.footerVisible} onChange={(checked) => settings.changeSetting('footerVisible', checked)} />
       </div>
 
       <Divider />
