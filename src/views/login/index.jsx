@@ -66,7 +66,7 @@ function Login() {
     return encryptor.encrypt(password)
   }
 
-  const handleFinish = async (values) => {
+  const handleLogin = async (values) => {
     if (!captchaInfo.uuid) {
       message.error('验证码未加载完成')
       return
@@ -112,7 +112,7 @@ function Login() {
             code: '',
             rememberMe: false
           }}
-          onFinish={handleFinish}
+          onFinish={handleLogin}
           size="large"
         >
           <Form.Item name="username" rules={[{ required: true, message: '用户名不能为空' }]}>

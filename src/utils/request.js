@@ -3,9 +3,9 @@ import settings from '@/settings.js'
 import { getToken, removeToken } from '@/utils/auth.js'
 
 const errorMessageMap = {
-  401: '登录状态已过期，请重新登录',
-  403: '权限不足',
-  500: '服务异常'
+  401: '当前登录状态已过期，请重新登录！',
+  403: '访问权限不足，请联系管理员！',
+  500: '服务出现异常，请联系管理员！'
 }
 
 let lastError = {
