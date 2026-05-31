@@ -1,0 +1,162 @@
+.system-role-page {
+  min-height: 100%;
+  padding: 16px;
+  background: var(--layout-bg);
+}
+
+.system-role-main {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 12px;
+}
+
+.system-role-toolbar {
+  margin-bottom: 8px;
+  padding: 0 16px;
+}
+
+.system-role-filter-form {
+  row-gap: 16px;
+
+  .ant-form-item {
+    margin-bottom: 12px;
+  }
+
+  .ant-input,
+  .ant-select {
+    width: 200px;
+  }
+}
+
+.system-role-table-panel,
+.system-role-menu-panel {
+  min-width: 0;
+  border: 1px solid var(--tags-item-border);
+  border-radius: 6px;
+  background: var(--navbar-bg);
+}
+
+.system-role-table-panel {
+  padding: 12px 16px 16px;
+}
+
+.system-role-menu-panel {
+  padding: 12px 14px 16px;
+}
+
+.system-role-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 32px;
+  margin-bottom: 8px;
+}
+
+.system-role-panel-title {
+  color: var(--layout-text);
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.system-role-selection-count {
+  color: var(--tags-item-text);
+  font-size: 13px;
+}
+
+.system-role-table-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 32px;
+  margin-bottom: 8px;
+}
+
+.system-role-current-row {
+  cursor: pointer;
+
+  > td {
+    background: rgba(64, 158, 255, 0.08) !important;
+  }
+}
+
+.system-role-menu-tree {
+  max-height: 560px;
+  overflow: auto;
+}
+
+.system-role-empty {
+  padding: 32px 0;
+}
+
+.system-role-form {
+  padding-top: 4px;
+
+  .ant-select,
+  .ant-tree-select,
+  .ant-input-number {
+    width: 100%;
+  }
+
+  .ant-form-item {
+    margin-bottom: 14px;
+  }
+
+  .ant-form-item-label {
+    overflow: visible;
+
+    > label {
+      white-space: nowrap;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .system-role-main {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 575px) {
+  .system-role-page {
+    padding: 12px;
+  }
+
+  .system-role-toolbar {
+    padding: 0;
+  }
+
+  .system-role-filter-form {
+    display: block;
+
+    .ant-form-item {
+      margin-right: 0;
+    }
+
+    .ant-input,
+    .ant-select {
+      width: 100%;
+    }
+  }
+
+  .system-role-filter-actions {
+    .ant-space {
+      width: 100%;
+    }
+
+    .ant-btn {
+      flex: 1;
+    }
+  }
+
+  .system-role-table-panel,
+  .system-role-menu-panel {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .system-role-form {
+    .ant-form-item {
+      display: block;
+    }
+  }
+}
