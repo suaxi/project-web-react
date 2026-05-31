@@ -3,8 +3,8 @@ import { DeleteOutlined, EditOutlined, PlusOutlined, ReloadOutlined, SearchOutli
 import { App as AntdApp, Button, Col, Form, Input, Modal, Radio, Row, Select, Space, Table, Tag, TreeSelect } from 'antd'
 import { getDeptChildList } from '@/api/system/dept.js'
 import { getJobList } from '@/api/system/job.js'
-import { getRoleList } from '@/api/system/role.js'
-import { addUser, deleteUser, getUser, getUserPage, updateUser } from '@/api/system/user.js'
+import { list as listRoles } from '@/api/system/role.js'
+import { add, del, getUser, page, update } from '@/api/system/user.js'
 import useUserStore from '@/store/user.js'
 import './index.scss'
 
@@ -156,7 +156,7 @@ function UserManagement() {
     setLoading(true)
 
     try {
-      const res = await getUserPage(nextParams)
+      const res = await page(nextParams)
 
       setRecords(Array.isArray(res?.records) ? res.records : [])
       setTotal(Number(res?.total) || 0)
@@ -214,7 +214,7 @@ function UserManagement() {
     setFormLoading(true)
 
     try {
-      const [roles, jobs, depts] = await Promise.all([getRoleList({}), getJobList(), getDeptChildList(0)])
+      const [roles, jobs, depts] = await Promise.all([listRoles({}), getJobList(), getDeptChildList(0)])
 
       setRoleOptions(getListData(roles).map((item) => ({ label: item.name, value: item.id })))
       setJobOptions(getListData(jobs).map((item) => ({ label: item.name, value: item.id })))
@@ -244,7 +244,7 @@ function UserManagement() {
     try {
       const [detail, roles, jobs, depts] = await Promise.all([
         getUser(target.id),
-        getRoleList({}),
+        listRoles({}),
         getJobList(),
         getDeptChildList(0)
       ])
@@ -300,10 +300,10 @@ function UserManagement() {
 
     try {
       if (editingId !== undefined && editingId !== null) {
-        await updateUser(submitForm)
+        await update(submitForm)
         message.success('修改成功')
       } else {
-        await addUser(submitForm)
+        await add(submitForm)
         message.success('保存成功')
       }
 
@@ -336,7 +336,7 @@ function UserManagement() {
         setDeleteLoading(true)
 
         try {
-          await deleteUser(ids)
+          await del(ids)
           message.success('删除成功')
           await queryPage(queryParams)
         } catch (error) {

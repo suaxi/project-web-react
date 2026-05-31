@@ -1,7 +1,7 @@
 import request from '@/utils/request.js'
 import qs from 'qs'
 
-export function addRole(data) {
+export function add(data) {
   return request({
     url: '/role',
     method: 'post',
@@ -9,7 +9,7 @@ export function addRole(data) {
   })
 }
 
-export function updateRole(data) {
+export function update(data) {
   return request({
     url: '/role',
     method: 'put',
@@ -17,7 +17,7 @@ export function updateRole(data) {
   })
 }
 
-export function deleteRole(ids) {
+export function del(ids) {
   return request({
     url: '/role',
     method: 'delete',
@@ -40,7 +40,7 @@ export function getRole(id) {
   })
 }
 
-export function getRoleList(data = {}) {
+export function list(data = {}) {
   return request({
     url: '/role/list',
     method: 'post',
@@ -48,7 +48,7 @@ export function getRoleList(data = {}) {
   })
 }
 
-export function getRolePage(params = {}) {
+export function page(params = {}) {
   const queryString = qs.stringify(params, { indices: false })
 
   return request({

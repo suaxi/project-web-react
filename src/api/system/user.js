@@ -1,7 +1,7 @@
 import request from '@/utils/request.js'
 import qs from 'qs'
 
-export function addUser(data) {
+export function add(data) {
   return request({
     url: '/user',
     method: 'post',
@@ -9,7 +9,7 @@ export function addUser(data) {
   })
 }
 
-export function updateUser(data) {
+export function update(data) {
   return request({
     url: '/user',
     method: 'put',
@@ -17,7 +17,7 @@ export function updateUser(data) {
   })
 }
 
-export function deleteUser(ids) {
+export function del(ids) {
   return request({
     url: '/user',
     method: 'delete',
@@ -32,7 +32,7 @@ export function getUser(id) {
   })
 }
 
-export function getUserList(data) {
+export function list(data) {
   return request({
     url: '/user/list',
     method: 'post',
@@ -40,7 +40,7 @@ export function getUserList(data) {
   })
 }
 
-export function getUserPage(params) {
+export function page(params = {}) {
   const queryString = qs.stringify(params, { indices: false })
 
   return request({

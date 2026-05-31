@@ -26,7 +26,7 @@ import {
 } from 'antd'
 import { getDeptTree } from '@/api/system/dept.js'
 import { getMenuChildList, getMenuList } from '@/api/system/menu.js'
-import { addRole, deleteRole, getRole, getRolePage, updateRole, updateRoleMenu } from '@/api/system/role.js'
+import { add, del, getRole, page, update, updateRoleMenu } from '@/api/system/role.js'
 import useUserStore from '@/store/user.js'
 import './index.scss'
 
@@ -164,7 +164,7 @@ function RoleManagement() {
     setLoading(true)
 
     try {
-      const res = await getRolePage(nextParams)
+      const res = await page(nextParams)
 
       setRecords(getRecords(res))
       setTotal(Number(res?.total) || 0)
@@ -295,10 +295,10 @@ function RoleManagement() {
 
     try {
       if (editingId !== undefined && editingId !== null) {
-        await updateRole(submitForm)
+        await update(submitForm)
         message.success('修改成功')
       } else {
-        await addRole(submitForm)
+        await add(submitForm)
         message.success('保存成功')
       }
 
@@ -387,7 +387,7 @@ function RoleManagement() {
         setDeleteLoading(true)
 
         try {
-          await deleteRole(ids)
+          await del(ids)
           message.success('删除成功')
           await queryPage(queryParams)
         } catch (error) {
