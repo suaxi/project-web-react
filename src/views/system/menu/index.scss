@@ -1,0 +1,140 @@
+.system-menu-page {
+  min-height: 100%;
+  padding: 16px;
+  background: var(--layout-bg);
+}
+
+.system-menu-table-panel {
+  min-width: 0;
+  padding: 12px 16px 16px;
+  border: 1px solid var(--tags-item-border);
+  border-radius: 6px;
+  background: var(--navbar-bg);
+}
+
+.system-menu-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 32px;
+  margin-bottom: 8px;
+}
+
+.system-menu-filter-form {
+  row-gap: 16px;
+
+  .ant-form-item {
+    margin-bottom: 12px;
+  }
+
+  .ant-input {
+    width: 200px;
+  }
+}
+
+.system-menu-icon-cell {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  color: var(--layout-text);
+  font-size: 16px;
+}
+
+.system-menu-icon-option-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  font-size: 15px;
+}
+
+.system-menu-form {
+  padding-top: 4px;
+
+  .ant-select,
+  .ant-tree-select,
+  .ant-input-number {
+    width: 100%;
+  }
+
+  .ant-form-item {
+    width: 100%;
+    margin-bottom: 14px;
+  }
+
+  .ant-form-item-row {
+    display: flex;
+    width: 100%;
+  }
+
+  .ant-form-item-label {
+    flex: 0 0 86px;
+    max-width: 86px;
+    overflow: visible;
+    text-align: right;
+
+    > label {
+      white-space: nowrap;
+    }
+  }
+
+  .ant-form-item-control {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .ant-radio-group {
+    display: flex;
+    align-items: center;
+    min-height: 32px;
+  }
+}
+
+@media (max-width: 575px) {
+  .system-menu-page {
+    padding: 12px;
+  }
+
+  .system-menu-table-panel {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .system-menu-filter-form {
+    display: block;
+
+    .ant-form-item {
+      margin-right: 0;
+    }
+
+    .ant-input {
+      width: 100%;
+    }
+  }
+
+  .system-menu-filter-actions {
+    .ant-space {
+      width: 100%;
+    }
+
+    .ant-btn {
+      flex: 1;
+    }
+  }
+
+  .system-menu-form {
+    .ant-form-item {
+      display: block;
+    }
+
+    .ant-form-item-row {
+      display: block;
+    }
+
+    .ant-form-item-label {
+      max-width: none;
+      text-align: left;
+    }
+  }
+}
