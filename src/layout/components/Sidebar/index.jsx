@@ -1,50 +1,11 @@
-import {
-  AppstoreOutlined,
-  ApartmentOutlined,
-  BookOutlined,
-  DashboardOutlined,
-  DesktopOutlined,
-  FileTextOutlined,
-  FolderOpenOutlined,
-  LinkOutlined,
-  MenuOutlined,
-  MonitorOutlined,
-  ProfileOutlined,
-  SettingOutlined,
-  TableOutlined,
-  ToolOutlined,
-  TeamOutlined,
-  UnorderedListOutlined,
-  UserOutlined
-} from '@ant-design/icons'
 import { Menu } from 'antd'
 import { Link, useLocation } from 'react-router-dom'
 import useAppStore from '@/store/app.js'
 import usePermissionStore from '@/store/permission.js'
 import useSettingsStore from '@/store/settings.js'
+import { getSidebarIcon } from './icons.jsx'
 import Logo from './Logo.jsx'
 import './index.scss'
-
-const iconMap = {
-  dashboard: <DashboardOutlined />,
-  dict: <BookOutlined />,
-  desktop: <DesktopOutlined />,
-  link: <LinkOutlined />,
-  list: <UnorderedListOutlined />,
-  log: <FileTextOutlined />,
-  menu: <MenuOutlined />,
-  monitor: <MonitorOutlined />,
-  peoples: <TeamOutlined />,
-  role: <TeamOutlined />,
-  setting: <SettingOutlined />,
-  system: <SettingOutlined />,
-  tool: <ToolOutlined />,
-  tree: <ApartmentOutlined />,
-  'tree-table': <TableOutlined />,
-  user: <UserOutlined />,
-  folder: <FolderOpenOutlined />,
-  app: <AppstoreOutlined />
-}
 
 function Sidebar() {
   const location = useLocation()
@@ -76,13 +37,6 @@ function Sidebar() {
     return normalizePath(`${basePath}/${routePath}`)
   }
 
-  const getIcon = (icon) => {
-    if (!icon || icon === '#') {
-      return null
-    }
-    return iconMap[icon] || <AppstoreOutlined />
-  }
-
   const getTitle = (route) => route.meta?.title || route.name || route.path
 
   const getMenuItem = (route, basePath = '/') => {
@@ -101,7 +55,7 @@ function Sidebar() {
     if (children.length) {
       return {
         key: routePath,
-        icon: getIcon(route.meta?.icon),
+        icon: getSidebarIcon(route.meta?.icon),
         label: getTitle(route),
         children: children.map((child) => getMenuItem(child, routePath)).filter(Boolean)
       }
@@ -109,7 +63,7 @@ function Sidebar() {
 
     return {
       key: routePath,
-      icon: getIcon(route.meta?.icon),
+      icon: getSidebarIcon(route.meta?.icon),
       label: isExternal(routePath) ? (
         <a href={routePath} rel="noreferrer" target="_blank">
           {getTitle(route)}
