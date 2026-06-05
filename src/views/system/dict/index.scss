@@ -1,0 +1,148 @@
+.system-dict-page {
+  min-height: 100%;
+  padding: 16px;
+  background: var(--layout-bg);
+}
+
+.system-dict-layout {
+  display: grid;
+  grid-template-columns: minmax(360px, 5fr) minmax(320px, 7fr);
+  gap: 16px;
+}
+
+.system-dict-panel {
+  min-width: 0;
+  min-height: 220px;
+  padding: 16px;
+  border: 1px solid var(--tags-item-border);
+  border-radius: 6px;
+  background: var(--navbar-bg);
+}
+
+.system-dict-filter-form {
+  row-gap: 16px;
+
+  .ant-form-item {
+    margin-bottom: 12px;
+  }
+
+  .ant-input {
+    width: 160px;
+  }
+}
+
+.system-dict-table-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 32px;
+  margin-bottom: 8px;
+}
+
+.system-dict-current-row {
+  > td {
+    background: var(--tags-item-active-bg) !important;
+  }
+}
+
+.system-dict-detail-panel {
+  .ant-empty {
+    margin-top: 52px;
+  }
+}
+
+.system-dict-detail-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+
+  .ant-typography {
+    margin-bottom: 0;
+  }
+}
+
+.system-dict-form {
+  padding-top: 4px;
+
+  .ant-input-number {
+    width: 100%;
+  }
+
+  .ant-form-item {
+    margin-bottom: 14px;
+  }
+
+  .ant-form-item-label {
+    overflow: visible;
+
+    > label {
+      white-space: nowrap;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .system-dict-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 575px) {
+  .system-dict-page {
+    padding: 12px;
+  }
+
+  .system-dict-panel {
+    padding: 12px;
+  }
+
+  .system-dict-filter-form {
+    display: block;
+
+    .ant-form-item {
+      margin-right: 0;
+    }
+
+    .ant-input {
+      width: 100%;
+    }
+  }
+
+  .system-dict-filter-actions {
+    .ant-space {
+      width: 100%;
+    }
+
+    .ant-btn {
+      flex: 1;
+    }
+  }
+
+  .system-dict-table-meta {
+    align-items: flex-start;
+    flex-direction: column;
+
+    .ant-space {
+      width: 100%;
+      flex-wrap: wrap;
+    }
+  }
+
+  .system-dict-detail-header {
+    align-items: flex-start;
+    flex-direction: column;
+
+    .ant-btn {
+      width: 100%;
+    }
+  }
+
+  .system-dict-form {
+    .ant-form-item {
+      display: block;
+    }
+  }
+}
