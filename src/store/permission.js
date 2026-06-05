@@ -1,10 +1,12 @@
 import { createElement, lazy, Suspense } from 'react'
-import { Outlet } from 'react-router-dom'
+import { Navigate, Outlet } from 'react-router-dom'
 import { create } from 'zustand'
 import { getUserRouter } from '@/api/system/menu.js'
 import { constantRoutes, layoutRoutes } from '@/router/routes.jsx'
 
 const viewModules = import.meta.glob('../views/**/*.jsx')
+
+const createNotFoundElement = () => createElement(Navigate, { replace: true, to: '/404' })
 
 const loadView = (view) => {
   const normalizedView = view?.replace(/^\/+|\.jsx$/g, '')
@@ -13,7 +15,7 @@ const loadView = (view) => {
   const loader = viewModules[modulePath] || viewModules[indexModulePath]
 
   if (!loader) {
-    return undefined
+    return createNotFoundElement()
   }
 
   const Component = lazy(loader)
@@ -30,6 +32,8 @@ const convertBackendRoutes = (routes = []) =>
       nextRoute.element = createElement(Outlet)
     } else if (component && component !== 'InnerLink') {
       nextRoute.element = loadView(component)
+    } else if (!component) {
+      nextRoute.element = createNotFoundElement()
     }
 
     delete nextRoute.component
