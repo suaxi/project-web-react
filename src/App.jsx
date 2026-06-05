@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { App as AntdApp, ConfigProvider, theme as antdTheme } from 'antd'
+import zhCN from 'antd/locale/zh_CN'
 import AppRouter from '@/router/index.jsx'
 import useAppStore from '@/store/app.js'
 import useSettingsStore from '@/store/settings.js'
@@ -39,6 +40,7 @@ function App() {
   return (
     <ConfigProvider
       componentSize={size}
+      locale={zhCN}
       theme={{
         algorithm: isDark ? antdTheme.darkAlgorithm : antdTheme.defaultAlgorithm,
         token: {

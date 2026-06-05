@@ -59,3 +59,18 @@ select {
   background-color: var(--scrollbar-thumb);
   border-radius: 3px;
 }
+
+#nprogress {
+  pointer-events: none;
+
+  .bar {
+    z-index: 2000;
+    background: var(--current-color);
+  }
+
+  .peg {
+    box-shadow:
+      0 0 10px var(--current-color),
+      0 0 5px var(--current-color);
+  }
+}

@@ -1,10 +1,14 @@
 import { useEffect, useMemo, useState } from 'react'
 import { BrowserRouter, Navigate, useLocation, useNavigate, useRoutes } from 'react-router-dom'
+import NProgress from 'nprogress'
+import 'nprogress/nprogress.css'
 import usePermissionStore from '@/store/permission.js'
 import useUserStore from '@/store/user.js'
 import { getToken } from '@/utils/auth.js'
 
 const whiteList = ['/login']
+
+NProgress.configure({ showSpinner: false })
 
 function RouterView() {
   const location = useLocation()
@@ -30,20 +34,38 @@ function RouterView() {
   }, [location.search])
 
   useEffect(() => {
+    if (!routeReady) {
+      return undefined
+    }
+
+    NProgress.start()
+    const timer = window.setTimeout(() => {
+      NProgress.done()
+    }, 200)
+
+    return () => {
+      window.clearTimeout(timer)
+    }
+  }, [fullPath, routeReady])
+
+  useEffect(() => {
     let canceled = false
 
     if (!token) {
+      NProgress.done()
       setRouteReady(true)
       resetRoutes()
       return undefined
     }
 
     if (location.pathname === '/login' || roles.length) {
+      NProgress.done()
       setRouteReady(true)
       return undefined
     }
 
     setRouteReady(false)
+    NProgress.start()
 
     Promise.all([getUserInfo(), generateRoutes()])
       .then(() => {
@@ -61,9 +83,15 @@ function RouterView() {
           }
         }
       })
+      .finally(() => {
+        if (!canceled) {
+          NProgress.done()
+        }
+      })
 
     return () => {
       canceled = true
+      NProgress.done()
     }
   }, [fullPath, generateRoutes, getUserInfo, location.pathname, logOut, navigate, resetRoutes, roles.length, token])
 
