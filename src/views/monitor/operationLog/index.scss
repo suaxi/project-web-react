@@ -1,0 +1,82 @@
+.monitor-operation-log-page {
+  min-height: 100%;
+  padding: 16px;
+  background: var(--layout-bg);
+}
+
+.monitor-operation-log-panel {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid var(--tags-item-border);
+  border-radius: 6px;
+  background: var(--navbar-bg);
+}
+
+.monitor-operation-log-filter-form {
+  row-gap: 16px;
+
+  .ant-form-item {
+    margin-bottom: 12px;
+  }
+
+  .ant-select {
+    width: 200px;
+  }
+
+  .ant-picker-range {
+    width: 360px;
+  }
+}
+
+.monitor-operation-log-detail {
+  .ant-descriptions-item-label {
+    width: 100px;
+    white-space: nowrap;
+  }
+
+  .ant-descriptions-item-content {
+    min-width: 0;
+    word-break: break-word;
+  }
+}
+
+.monitor-operation-log-long-text {
+  max-height: 180px;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+@media (max-width: 575px) {
+  .monitor-operation-log-page {
+    padding: 12px;
+  }
+
+  .monitor-operation-log-panel {
+    padding-right: 12px;
+    padding-left: 12px;
+  }
+
+  .monitor-operation-log-filter-form {
+    display: block;
+
+    .ant-form-item {
+      margin-right: 0;
+    }
+
+    .ant-select,
+    .ant-picker-range {
+      width: 100%;
+    }
+  }
+
+  .monitor-operation-log-filter-actions {
+    .ant-space {
+      width: 100%;
+    }
+
+    .ant-btn {
+      flex: 1;
+    }
+  }
+}
