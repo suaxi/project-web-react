@@ -70,7 +70,9 @@ function Navbar({ onSetLayout }) {
 
         const routePath = route.index ? normalizePath(basePath) : resolvePath(basePath, route.path)
         const isCurrent = location.pathname === routePath
-        const isParent = route.children?.length && location.pathname.startsWith(`${routePath}/`)
+        const isParent =
+          route.children?.length &&
+          (routePath === '/' ? location.pathname.startsWith('/') : location.pathname.startsWith(`${routePath}/`))
 
         if (isCurrent || isParent) {
           matchedRoutes.push({ ...route, fullPath: routePath })
