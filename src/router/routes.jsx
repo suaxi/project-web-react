@@ -86,6 +86,16 @@ export const constantRoutes = [
         }
       },
       {
+        path: '403',
+        element: lazyElement(() => import('@/views/error/403.jsx')),
+        hidden: true,
+        meta: {
+          title: '403',
+          hidden: true,
+          noCache: true
+        }
+      },
+      {
         path: '404',
         element: lazyElement(() => import('@/views/error/404.jsx')),
         hidden: true,
@@ -97,10 +107,10 @@ export const constantRoutes = [
       },
       {
         path: '*',
-        element: <Navigate to="/404" replace />,
+        element: <Navigate to="/403" replace />,
         hidden: true,
         meta: {
-          title: 'Not Found Redirect',
+          title: 'Forbidden Redirect',
           hidden: true,
           noCache: true
         }
