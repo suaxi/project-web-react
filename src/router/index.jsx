@@ -5,6 +5,7 @@ import 'nprogress/nprogress.css'
 import usePermissionStore from '@/store/permission.js'
 import useUserStore from '@/store/user.js'
 import { getToken } from '@/utils/auth.js'
+import settings from '@/settings.js'
 
 const whiteList = ['/login']
 
@@ -95,6 +96,26 @@ function RouterView() {
     }
   }, [fullPath, generateRoutes, getUserInfo, location.pathname, logOut, navigate, resetRoutes, roles.length, token])
 
+  useEffect(() => {
+    const findDocumentTitle = (items = [], basePath = '') => {
+      for (const route of items) {
+        const routePath = route.index ? basePath || '/' : route.path?.startsWith('/') ? route.path : `${basePath}/${route.path || ''}`.replace(/\/+/g, '/')
+
+        if (routePath === location.pathname) {
+          return route.meta?.title
+        }
+
+        const childTitle = findDocumentTitle(route.children, routePath)
+        if (childTitle) {
+          return childTitle
+        }
+      }
+      return ''
+    }
+
+    document.title = findDocumentTitle(routes) || settings.title
+  }, [location.pathname, routes])
+
   if (!token && !whiteList.includes(location.pathname)) {
     return <Navigate replace to={`/login?redirect=${encodeURIComponent(fullPath)}`} />
   }
@@ -106,7 +127,6 @@ function RouterView() {
   if (token && location.pathname !== '/login' && (!roles.length || !routeReady)) {
     return null
   }
-
   return routeElement
 }
 
